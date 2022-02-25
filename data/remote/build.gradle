@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlinx-serialization'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk ConfigVersion.compileSdk
+
+    defaultConfig {
+        minSdk ConfigVersion.minSdk
+        targetSdk ConfigVersion.targetSdk
+        versionCode ConfigVersion.versionCode
+        versionName ConfigVersion.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        Properties properties = new Properties()
+        if (rootProject.file("local.properties").exists()) {
+            properties.load(rootProject.file("local.properties").newDataInputStream())
+        }
+
+        buildConfigField("String", "API_KEY", "\""+properties.getProperty("API_KEY", "")+"\"")
+        buildConfigField("String", "BASE_URL_API", "\"api.themoviedb.org/3\"")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    kapt {
+        correctErrorTypes = true
+    }
+}
+
+dependencies {
+    //for getting api response
+    implementation Deps.KTOR_CLIENT_ANDROID
+    implementation Deps.KTOR_CLIENT_SERIALIZATION
+    implementation Deps.KOTLINX_SERIALIAZATION_JSON
+    implementation Deps.KTOR_CLIENT_LOGGING
+    implementation Deps.KTOR_CLIENT_CORE_JVM
+
+    implementation Deps.ARROW_CORE
+
+    //HILT
+    implementation Deps.HILT_ANDROID
+    kapt Deps.HILT_COMPILER
+}
