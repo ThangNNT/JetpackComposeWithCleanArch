@@ -13,6 +13,8 @@ object Deps {
     const val ANDROIDX_COMPOSE_UI_TOOLING_PERVIEW = "androidx.compose.ui:ui-tooling-preview:${Versions.COMPOSE_VERSION}"
     const val ANDROIDX_LIFECYCLE_RUNTIME_KTX = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.ANDROIX_LIFECYCLE_RUNTIME_KTX}"
     const val ANDROIDX_ACTIVITY_COMPOSE = "androidx.activity:activity-compose:${Versions.ANDROIDX_ACTIVITY_COMPOSE}"
+    const val ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE}"
+
 
     /**------------------ KTOR -----------------------*/
     const val KTOR_CLIENT_ANDROID = "io.ktor:ktor-client-android:${Versions.KTOR_CLIENT_ANDROID}"
