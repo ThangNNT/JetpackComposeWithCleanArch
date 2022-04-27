@@ -11,6 +11,7 @@ object Versions {
     const val ANDROID_MATERIAL = "1.5.0"
     const val ANDROIX_LIFECYCLE_RUNTIME_KTX = "2.4.0"
     const val ANDROIDX_ACTIVITY_COMPOSE = "1.4.0"
+    const val ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE = "2.5.0-alpha03"
 
     /**------------------ KTOR -----------------------*/
     const val KTOR_CLIENT_ANDROID = "1.5.0"

@@ -64,7 +64,7 @@ dependencies {
     implementation Deps.ANDROIDX_COMPOSE_MATERIAL
     implementation Deps.ANDROIDX_COMPOSE_UI_TOOLING_PERVIEW
     implementation Deps.ANDROIDX_LIFECYCLE_RUNTIME_KTX
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0-alpha02"
+    implementation Deps.ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE
     implementation Deps.ANDROIDX_ACTIVITY_COMPOSE
     testImplementation TestDeps.JUNIT
     androidTestImplementation TestDeps.JUNIT_ANDROIDX_TEST_EXT

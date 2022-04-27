@@ -37,9 +37,9 @@ import com.nnt.jetpackcomposewithcleanarch.ui.theme.JetpackComposeWithCleanArchT
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.Purple200
 import com.nnt.navigator.MovieDetailActivityNavigator
 import com.nnt.utils.buildImageUrl
+import com.nnt.viewmore.MoreMovieActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
-import okhttp3.internal.http2.Header
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -130,6 +130,7 @@ fun MovieCard(movie: MovieModel, navigator: MovieDetailActivityNavigator){
 @ExperimentalUnitApi
 @Composable
 fun Header(text: String, movieType: MovieType) {
+    val context = LocalContext.current
     val textStyle =
         TextStyle(fontWeight = FontWeight.W600, fontSize = TextUnit(24f, TextUnitType.Sp))
     val textMoreStyle = TextStyle(
@@ -146,7 +147,7 @@ fun Header(text: String, movieType: MovieType) {
             Modifier
                 .padding(16.dp, vertical = 16.dp)
                 .clickable {
-                    Log.d("AAAAAAAAAAAAAA", movieType.toString())
+                    context.startActivity(MoreMovieActivity.newIntent(context, movieType))
                 }
                 .weight(2f), style = textMoreStyle, textAlign = TextAlign.End
         )

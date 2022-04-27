@@ -19,7 +19,7 @@ class RemoteMovieDataSourceImpl(private val movieApi: MovieApi) : BaseRemoteData
         type: MovieType,
         page: Int?
     ): Either<ErrorResponse, MovieResponse> =
-        getResult { movieApi.getMovies(type.value, page = null) }
+        getResult { movieApi.getMovies(type.value, page = page) }
 
     override suspend fun getMovieDetail(movieId: Int): Either<ErrorResponse, MovieDetailResponse> =
         getResult {

@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="Theme.JetpackComposeWithCleanArch.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.JetpackComposeWithCleanArch.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.JetpackComposeWithCleanArch.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
