@@ -86,4 +86,9 @@ dependencies {
 
     //Coil
     implementation Deps.COIL
+
+    implementation Deps.NAVIGATION_COMPOSE
+
+    implementation Deps.HILT_NAVIGATION_COMPOSE
+
 }

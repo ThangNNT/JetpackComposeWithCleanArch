@@ -12,6 +12,7 @@ object Versions {
     const val ANDROIX_LIFECYCLE_RUNTIME_KTX = "2.4.0"
     const val ANDROIDX_ACTIVITY_COMPOSE = "1.4.0"
     const val ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE = "2.5.0-alpha03"
+    const val NAVIGATION_COMPOSE = "2.5.0-beta01"
 
     /**------------------ KTOR -----------------------*/
     const val KTOR_CLIENT_ANDROID = "1.5.0"
@@ -25,6 +26,7 @@ object Versions {
 
     /**----------------- HILT ---------------------*/
     const val HILT_VERSION ="2.38.1"
+    const val HILT_NAVIGATION_COMPOSE = "1.0.0"
 
     /**------------------- COROUTINES -----------------*/
     const val KOTLIN_COROUTINES = "1.5.2"

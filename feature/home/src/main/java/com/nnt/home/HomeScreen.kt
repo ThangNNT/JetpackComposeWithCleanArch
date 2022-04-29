@@ -1,13 +1,5 @@
 package com.nnt.home
 
-import android.content.Context
-import android.os.Bundle
-import android.util.Log
-import androidx.compose.ui.unit.ExperimentalUnitApi
-
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -20,70 +12,56 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.ExperimentalUnitApi
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.nnt.domain.base.Result
 import com.nnt.domain.model.MovieModel
 import com.nnt.domain.model.MovieModels
 import com.nnt.domain.usecase.MovieType
-import com.nnt.jetpackcomposewithcleanarch.ui.theme.JetpackComposeWithCleanArchTheme
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.Purple200
-import com.nnt.navigator.MovieDetailActivityNavigator
+import com.nnt.navigator.Destinations
 import com.nnt.utils.buildImageUrl
-import com.nnt.viewmore.MoreMovieActivity
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.StateFlow
-import javax.inject.Inject
 
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-
-    @Inject lateinit var navigator: MovieDetailActivityNavigator
-
-    private val viewModel: MainViewModel by viewModels()
-
-    @OptIn(ExperimentalUnitApi::class)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            JetpackComposeWithCleanArchTheme() {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    LazyColumn() {
-                        item {
-                            Header(text = "Popular", movieType = MovieType.POPULAR)
-                            MovieLists(viewModel.popularMovies, navigator = navigator)
-                            Header(text = "Top Rated", movieType = MovieType.TOP_RATED)
-                            MovieLists(viewModel.topRatedMovies, navigator = navigator)
-                            Header(text = "Upcoming", movieType = MovieType.UPCOMING)
-                            MovieLists(viewModel.upcomingMovies, navigator = navigator)
-                            Header(text = "Now Playing", movieType = MovieType.NOW_PLAYING)
-                            MovieLists(viewModel.nowPlayingMovies, navigator = navigator)
-                            Text("",Modifier.padding(0.dp, 0.dp, 0.dp, 20.dp))
-                        }
-                    }
-                }
+@ExperimentalUnitApi
+@Composable
+fun HomeScreen(navController: NavController){
+    val viewModel = hiltViewModel<MainViewModel>()
+    Surface(color = MaterialTheme.colors.background) {
+        LazyColumn() {
+            item {
+                Header(text = "Popular", movieType = MovieType.POPULAR, navController)
+                MovieLists(viewModel.popularMovies, navigator = navController)
+                Header(text = "Top Rated", movieType = MovieType.TOP_RATED, navController)
+                MovieLists(viewModel.topRatedMovies, navigator = navController)
+                Header(text = "Upcoming", movieType = MovieType.UPCOMING, navController)
+                MovieLists(viewModel.upcomingMovies, navigator = navController)
+                Header(text = "Now Playing", movieType = MovieType.NOW_PLAYING, navController)
+                MovieLists(viewModel.nowPlayingMovies, navigator = navController)
+                Text("",Modifier.padding(0.dp, 0.dp, 0.dp, 20.dp))
             }
         }
     }
 }
 
 @Composable
-fun MovieLists(moviesState: StateFlow<Result<MovieModels>>, navigator: MovieDetailActivityNavigator){
+fun MovieLists(moviesState: StateFlow<Result<MovieModels>>, navigator: NavController){
     when(val state = moviesState.collectAsState().value){
         is Result.Loading -> {
             CircularProgressIndicator(Modifier.padding(20.dp, 20.dp))
         }
         is Result.Success -> {
             state.data?.movies?.let { movies ->
-                LazyRow(){
+                LazyRow{
                     items(movies,
                         key = { movie -> movie
                         }){ movie ->
@@ -102,13 +80,13 @@ fun MovieLists(moviesState: StateFlow<Result<MovieModels>>, navigator: MovieDeta
 }
 
 @Composable
-fun MovieCard(movie: MovieModel, navigator: MovieDetailActivityNavigator){
-    val context = LocalContext.current
-    Card(Modifier
+fun MovieCard(movie: MovieModel, navigator: NavController){
+    Card(
+        Modifier
         .padding(10.dp, 0.dp)
         .selectable(selected = true, onClick = {
             movie.id?.let {
-                context.startActivity(navigator.newIntent(context, it))
+                navigator.navigate(route = Destinations.MovieDetail.createRoute(it))
             }
         }), elevation = 2.dp) {
         Column(modifier = Modifier
@@ -129,8 +107,7 @@ fun MovieCard(movie: MovieModel, navigator: MovieDetailActivityNavigator){
 
 @ExperimentalUnitApi
 @Composable
-fun Header(text: String, movieType: MovieType) {
-    val context = LocalContext.current
+fun Header(text: String, movieType: MovieType, navController: NavController) {
     val textStyle =
         TextStyle(fontWeight = FontWeight.W600, fontSize = TextUnit(24f, TextUnitType.Sp))
     val textMoreStyle = TextStyle(
@@ -147,7 +124,7 @@ fun Header(text: String, movieType: MovieType) {
             Modifier
                 .padding(16.dp, vertical = 16.dp)
                 .clickable {
-                    context.startActivity(MoreMovieActivity.newIntent(context, movieType))
+                    navController.navigate(Destinations.MoreMovie.createRoute(movieType = movieType))
                 }
                 .weight(2f), style = textMoreStyle, textAlign = TextAlign.End
         )

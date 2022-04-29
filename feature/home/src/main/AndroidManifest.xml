@@ -3,11 +3,5 @@
     package="com.nnt.home">
 
     <application>
-        <activity
-            android:name="com.nnt.viewmore.MoreMovieActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.JetpackComposeWithCleanArch.NoActionBar" />
     </application>
-
 </manifest>

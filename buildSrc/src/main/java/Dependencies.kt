@@ -14,6 +14,7 @@ object Deps {
     const val ANDROIDX_LIFECYCLE_RUNTIME_KTX = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.ANDROIX_LIFECYCLE_RUNTIME_KTX}"
     const val ANDROIDX_ACTIVITY_COMPOSE = "androidx.activity:activity-compose:${Versions.ANDROIDX_ACTIVITY_COMPOSE}"
     const val ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE}"
+    const val NAVIGATION_COMPOSE = "androidx.navigation:navigation-compose:${Versions.NAVIGATION_COMPOSE}"
 
 
     /**------------------ KTOR -----------------------*/
@@ -29,6 +30,7 @@ object Deps {
     /**------------------- HILT -----------------------*/
     const val HILT_ANDROID =  "com.google.dagger:hilt-android:${Versions.HILT_VERSION}"
     const val HILT_COMPILER = "com.google.dagger:hilt-compiler:${Versions.HILT_VERSION}"
+    const val HILT_NAVIGATION_COMPOSE = "androidx.hilt:hilt-navigation-compose:${Versions.HILT_NAVIGATION_COMPOSE}"
 
     /**------------------- COROUTINES -----------------*/
     const val KOTLIN_COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.KOTLIN_COROUTINES}"
