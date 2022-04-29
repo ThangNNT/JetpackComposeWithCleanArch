@@ -1,18 +1,19 @@
 package com.nnt.jetpackcomposewithcleanarch
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.ExperimentalUnitApi
-import androidx.navigation.NavArgument
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.nnt.domain.usecase.MovieType
 import com.nnt.home.HomeScreen
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.JetpackComposeWithCleanArchTheme
+import com.nnt.jetpackcomposewithcleanarch.ui.theme.PrimaryColor
 import com.nnt.moviedetail.MovieDetailScreen
 import com.nnt.navigator.Destinations
 import com.nnt.navigator.MoreMovieArgs
@@ -26,6 +27,18 @@ import kotlinx.coroutines.InternalCoroutinesApi
 @Composable
 fun JetApp(){
     JetpackComposeWithCleanArchTheme {
+        //setup status bar color
+        val systemUiController = rememberSystemUiController()
+        if(isSystemInDarkTheme()){
+            systemUiController.setSystemBarsColor(
+                color = PrimaryColor
+            )
+        }else{
+            systemUiController.setSystemBarsColor(
+                color = PrimaryColor
+            )
+        }
+        //setup navigation
         val navController = rememberNavController()
         NavHost(navController = navController, startDestination = Destinations.Home.route){
             composable(route = Destinations.Home.route){
