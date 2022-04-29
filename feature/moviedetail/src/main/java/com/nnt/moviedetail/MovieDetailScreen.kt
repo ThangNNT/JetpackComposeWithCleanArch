@@ -6,8 +6,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -24,7 +24,6 @@ fun MovieDetailScreen(navController: NavController, movieId: Int, navigateUp: ()
     Column {
         Toolbar(title = "Detail", navigateUp = {
             navController.popBackStack()
-
         })
         MovieDetailBanner(movieDetailState = viewModel.movieDetail)
     }
@@ -41,19 +40,21 @@ fun MovieDetailBanner(movieDetailState: StateFlow<Result<MovieDetailModel>>){
         }
         is Result.Success -> {
             val movieDetail = state.data
-            LazyColumn(Modifier.padding(16.dp)){
+            LazyColumn{
                 item {
                     Image(modifier = Modifier
                         .height(200.dp)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(0.dp),
                         painter = rememberImagePainter(buildImageUrl(movieDetail?.backdrop_path), builder = {
                             error(R.drawable.no_poster_available)
                         }),
-                        contentDescription = ""
+                        contentDescription = "",
+                        contentScale = ContentScale.FillWidth
                     )
                 }
                 item {
-                    Text(text = movieDetail?.overview?:"", Modifier.padding(0.dp, 16.dp, 0.dp, 0.dp))
+                    Text(text = movieDetail?.overview?:"", Modifier.padding(16.dp))
                 }
             }
         }

@@ -13,15 +13,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.nnt.core.R
-import com.nnt.jetpackcomposewithcleanarch.ui.theme.Purple700
+import com.nnt.jetpackcomposewithcleanarch.ui.theme.PrimaryColor
 
 @Composable
-fun Toolbar(title: String, navigateUp: ()->Unit, background: Color = Purple700){
+fun Toolbar(title: String, navigateUp: ()->Unit, background: Color = PrimaryColor){
     Row(Modifier.fillMaxWidth()
-        .background(background)
-        .padding(16.dp)) {
+        .background(background)) {
         Image(painterResource(id = R.drawable.ic_back), contentDescription = "navigateUp icon",
-            modifier = Modifier.padding(0.dp, 4.dp, 12.dp, 4.dp)
+            modifier = Modifier.padding(16.dp, 0.dp, 12.dp, 16.dp)
                 .clickable { navigateUp.invoke() })
         Text(text = title, color = Color.White)
     }

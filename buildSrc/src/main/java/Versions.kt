@@ -36,6 +36,9 @@ object Versions {
 
     /**------------------ COIL ----------------------------*/
     const val COIL ="1.4.0"
+
+    /**----------------- SYSTEM_UI_CONTROLLER -------------------------------*/
+    const val SYSTEM_UI_CONTROLLER = "0.17.0"
 }
 
 object TestVersion {

@@ -96,4 +96,7 @@ dependencies {
 
     implementation Deps.HILT_NAVIGATION_COMPOSE
 
+    implementation Deps.SYSTEM_UI_CONTROLLER
+
+
 }

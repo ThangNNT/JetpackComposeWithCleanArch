@@ -42,6 +42,9 @@ object Deps {
     /**------------------ COIL ----------------------------*/
     const val COIL ="io.coil-kt:coil-compose:${Versions.COIL}"
 
+    /**----------------- SYSTEM_UI_CONTROLLER -------------------------------*/
+    const val SYSTEM_UI_CONTROLLER = "com.google.accompanist:accompanist-systemuicontroller:${Versions.SYSTEM_UI_CONTROLLER}"
+
 }
 
 
