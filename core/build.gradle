@@ -67,4 +67,10 @@ dependencies {
 
     implementation project(Modules.DOMAIN)
     implementation project(Modules.REPOSITORY)
+
+    implementation Deps.NAVIGATION_COMPOSE
+
+    //Coil
+    implementation Deps.COIL
+
 }
