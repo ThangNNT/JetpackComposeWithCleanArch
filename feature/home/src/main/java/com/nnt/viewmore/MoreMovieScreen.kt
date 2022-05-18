@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.StateFlow
 @Composable
 fun MoreMovieScreen(navController: NavController, movieType: MovieType) {
     val viewModel = hiltViewModel<MoreMovieViewModel>()
-    val movies: ArrayList<MovieModel> = remember { ArrayList() }
     val state = rememberLazyListState()
     var indexPage: Int = remember { 1 }
     HorizontalMovies(state, moviesStateFlow = viewModel.moviesState, navController = navController)
@@ -34,6 +33,7 @@ fun MoreMovieScreen(navController: NavController, movieType: MovieType) {
 @ExperimentalFoundationApi
 @Composable
 fun HorizontalMovies(state: LazyListState, moviesStateFlow: StateFlow<Result<MovieModels>>, navController: NavController){
+    val movies: ArrayList<MovieModel> = remember { ArrayList() }
     when (val result = moviesStateFlow.collectAsState().value) {
         is Result.Empty -> {
 
@@ -45,8 +45,9 @@ fun HorizontalMovies(state: LazyListState, moviesStateFlow: StateFlow<Result<Mov
 
         }
         is Result.Success -> {
+            movies.addAll(result.data?.movies.orEmpty())
             LazyVerticalGrid(cells = GridCells.Fixed(1), state = state) {
-                items(result.data?.movies.orEmpty()) { item ->
+                items(movies) { item ->
                     HorizontalMovieCard(movie = item, navigator = navController)
                 }
             }
