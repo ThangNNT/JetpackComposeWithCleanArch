@@ -73,4 +73,6 @@ dependencies {
     //Coil
     implementation Deps.COIL
 
+    //Gson
+    implementation Deps.GSON
 }

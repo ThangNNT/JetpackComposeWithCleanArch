@@ -98,5 +98,8 @@ dependencies {
 
     implementation Deps.SYSTEM_UI_CONTROLLER
 
+    //Gson
+    implementation Deps.GSON
+
 
 }

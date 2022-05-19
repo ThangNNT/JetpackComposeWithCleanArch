@@ -39,6 +39,9 @@ object Versions {
 
     /**----------------- SYSTEM_UI_CONTROLLER -------------------------------*/
     const val SYSTEM_UI_CONTROLLER = "0.17.0"
+
+    /**----------------- GSON -----------------------------------------------*/
+    const val GSON = "2.9.0"
 }
 
 object TestVersion {

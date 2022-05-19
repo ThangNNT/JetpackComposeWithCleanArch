@@ -45,6 +45,10 @@ object Deps {
     /**----------------- SYSTEM_UI_CONTROLLER -------------------------------*/
     const val SYSTEM_UI_CONTROLLER = "com.google.accompanist:accompanist-systemuicontroller:${Versions.SYSTEM_UI_CONTROLLER}"
 
+    /**----------------- GSON -----------------------------------------------*/
+    const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
+
+
 }
 
 
