@@ -1,6 +1,5 @@
 package com.nnt.moviedetail
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -20,10 +19,10 @@ import com.nnt.utils.buildImageUrl
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun MovieDetailScreen(navController: NavController, movieId: Int, navigateUp: ()-> Unit){
+fun MovieDetailScreen(navController: NavController, movieId: Int, movieName: String, navigateUp: ()-> Unit){
     val viewModel = hiltViewModel<MovieDetailViewModel>()
     Column {
-        Toolbar(title = "Detail", navigateUp = {
+        Toolbar(title = movieName, navigateUp = {
             navController.popBackStack()
         })
         MovieDetailBanner(movieDetailState = viewModel.movieDetail)

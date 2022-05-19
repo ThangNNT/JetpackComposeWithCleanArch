@@ -1,12 +1,11 @@
 package com.nnt.navigator
 
-import android.util.Log
 import com.nnt.domain.usecase.MovieType
 
 sealed class Destinations(val route: String){
     object Home: Destinations("home")
-    object MovieDetail: Destinations("movie_detail/{${MovieDetailArgs.MovieId.value}}"){
-        fun createRoute(movieId: Int) = "movie_detail/$movieId"
+    object MovieDetail: Destinations("movie_detail/{${MovieDetailArgs.MovieId.value}}?${MovieDetailArgs.MovieName.value}={${MovieDetailArgs.MovieName.value}}"){
+        fun createRoute(movieId: Int, movieName: String) = "movie_detail/$movieId?${MovieDetailArgs.MovieName.value}=$movieName"
     }
     object MoreMovie: Destinations("home/more/{${MoreMovieArgs.Type.value}}"){
         fun createRoute(movieType: MovieType) = "home/more/${movieType.name}"
@@ -14,7 +13,8 @@ sealed class Destinations(val route: String){
 }
 
 enum class MovieDetailArgs(val value: String){
-    MovieId("movieId")
+    MovieId("movieId"),
+    MovieName("movieName")
 }
 
 enum class MoreMovieArgs(val value: String){

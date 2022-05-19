@@ -33,7 +33,7 @@ fun MovieCard(movie: MovieModel, navigator: NavController){
             .padding(10.dp, 0.dp)
             .selectable(selected = true, onClick = {
                 movie.id?.let {
-                    navigator.navigate(route = Destinations.MovieDetail.createRoute(it))
+                    navigator.navigate(route = Destinations.MovieDetail.createRoute(it, movie.name.orEmpty()))
                 }
             }), elevation = 2.dp, shape = RoundedCornerShape(6.dp)
     ) {
@@ -70,7 +70,7 @@ fun HorizontalMovieCard(@PreviewParameter(MovieModelProvider::class) movie: Movi
             .padding(10.dp, 0.dp)
             .selectable(selected = true, onClick = {
                 movie.id?.let {
-                    navigator.navigate(route = Destinations.MovieDetail.createRoute(it))
+                    navigator.navigate(route = Destinations.MovieDetail.createRoute(it, movieName = movie.name.orEmpty()))
                 }
             }), elevation = 2.dp, shape = RoundedCornerShape(6.dp)
     ) {

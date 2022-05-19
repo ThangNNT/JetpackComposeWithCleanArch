@@ -46,10 +46,13 @@ fun JetApp(){
             }
             composable(route = Destinations.MovieDetail.route, arguments = listOf(navArgument(MovieDetailArgs.MovieId.value){
                  type = NavType.IntType
+            }, navArgument(MovieDetailArgs.MovieName.value){
+                type = NavType.StringType
             })){
                 val movieId = it.arguments?.getInt(MovieDetailArgs.MovieId.value)
+                val movieName = it.arguments?.getString(MovieDetailArgs.MovieName.value)
                 requireNotNull(movieId)
-                MovieDetailScreen(navController, movieId) {
+                MovieDetailScreen(navController, movieId, movieName = movieName.orEmpty()) {
                     navController.popBackStack()
                 }
             }
