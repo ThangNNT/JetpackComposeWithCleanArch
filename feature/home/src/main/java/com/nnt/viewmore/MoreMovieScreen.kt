@@ -1,6 +1,7 @@
 package com.nnt.viewmore
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -12,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.nnt.core.common.HorizontalMovieCard
+import com.nnt.core.common.Toolbar
 import com.nnt.domain.base.Result
 import com.nnt.domain.model.MovieModel
 import com.nnt.domain.model.MovieModels
@@ -24,9 +26,14 @@ import kotlinx.coroutines.flow.StateFlow
 @Composable
 fun MoreMovieScreen(navController: NavController) {
     val viewModel = hiltViewModel<MoreMovieViewModel>()
-    HorizontalMovies(viewModel.movies, viewModel.state, moviesStateFlow = viewModel.moviesState, navController = navController)
-    viewModel.state.OnBottomReached(10) {
-        viewModel.getMorePageMovies()
+    Column {
+        Toolbar(title = viewModel.type.readableName, navigateUp = {
+            navController.popBackStack()
+        })
+        HorizontalMovies(viewModel.movies, viewModel.state, moviesStateFlow = viewModel.moviesState, navController = navController)
+        viewModel.state.OnBottomReached(10) {
+            viewModel.getMorePageMovies()
+        }
     }
 }
 

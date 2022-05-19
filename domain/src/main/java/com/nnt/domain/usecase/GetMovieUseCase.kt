@@ -10,10 +10,10 @@ class GetMovieUseCase (private val movieRepository: MovieRepository) {
     }
 }
 
-enum class MovieType{
-    LATEST,
-    NOW_PLAYING,
-    POPULAR,
-    TOP_RATED,
-    UPCOMING
+enum class MovieType(val readableName: String){
+    LATEST("Latest"),
+    NOW_PLAYING("Now playing"),
+    POPULAR("Popular"),
+    TOP_RATED("Top rated"),
+    UPCOMING("Upcoming")
 }

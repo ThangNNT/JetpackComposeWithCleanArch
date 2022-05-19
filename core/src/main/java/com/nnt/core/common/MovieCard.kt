@@ -73,7 +73,7 @@ fun HorizontalMovieCard(@PreviewParameter(MovieModelProvider::class) movie: Movi
                 }
             }), elevation = 2.dp, shape = RoundedCornerShape(6.dp)
     ) {
-        Row(modifier = Modifier.padding(16.dp, 0.dp)) {
+        Row(modifier = Modifier.padding(0.dp, 0.dp, 16.dp, 0.dp)) {
             Image(
                 modifier = Modifier
                     .height(160.dp)
@@ -97,5 +97,5 @@ fun HorizontalMovieCard(@PreviewParameter(MovieModelProvider::class) movie: Movi
 }
 
 class MovieModelProvider : PreviewParameterProvider<MovieModel>{
-    override val values: Sequence<MovieModel> = sequenceOf(MovieModel(1,"Kỷ băng hà 2","abc", "cde", 5.0, 0.1, 100))
+    override val values: Sequence<MovieModel> = sequenceOf(MovieModel(1,"Kỷ băng hà 2","abc", "/odJ4hx6g6vBt4lBWKFD1tI8WS4x.jpg", 5.0, 0.1, 100))
 }
