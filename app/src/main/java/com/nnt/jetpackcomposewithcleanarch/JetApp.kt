@@ -58,6 +58,9 @@ fun JetApp(){
             composable(route = Destinations.MoreMovie.route, arguments = listOf(navArgument(MoreMovieArgs.Type.value){
                 type = NavType.StringType
             })){
+                requireNotNull(it.arguments?.getString(MoreMovieArgs.Type.value)){
+                    "You need to pass MovieType string when navigate"
+                }
                 MoreMovieScreen(navController = navController)
             }
         }

@@ -33,9 +33,11 @@ class MoreMovieViewModel @Inject constructor(private val getMovieUseCase: GetMov
 
     init {
         val typeString = savedStateHandle.get<String>(MoreMovieArgs.Type.value)
-        if (typeString != null) {
-            type = MovieType.valueOf(typeString)
+        requireNotNull(typeString){
+            "You need to pass MovieType string when navigate"
         }
+        type = MovieType.valueOf(typeString)
+
         getFirstPageMovies()
     }
 
