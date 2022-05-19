@@ -10,7 +10,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.nnt.domain.usecase.MovieType
 import com.nnt.home.HomeScreen
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.JetpackComposeWithCleanArchTheme
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.PrimaryColor
@@ -59,10 +58,7 @@ fun JetApp(){
             composable(route = Destinations.MoreMovie.route, arguments = listOf(navArgument(MoreMovieArgs.Type.value){
                 type = NavType.StringType
             })){
-                val typeName = it.arguments?.getString(MoreMovieArgs.Type.value)
-                requireNotNull(typeName)
-                val type = MovieType.valueOf(typeName)
-                MoreMovieScreen(navController = navController, movieType = type)
+                MoreMovieScreen(navController = navController)
             }
         }
     }

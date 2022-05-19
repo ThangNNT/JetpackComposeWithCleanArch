@@ -10,7 +10,6 @@ import com.nnt.core.common.HorizontalMovieCard
 import com.nnt.domain.base.Result
 import com.nnt.domain.model.MovieModel
 import com.nnt.domain.model.MovieModels
-import com.nnt.domain.usecase.MovieType
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.StateFlow
 
@@ -18,15 +17,11 @@ import kotlinx.coroutines.flow.StateFlow
 @InternalCoroutinesApi
 @ExperimentalFoundationApi
 @Composable
-fun MoreMovieScreen(navController: NavController, movieType: MovieType) {
+fun MoreMovieScreen(navController: NavController) {
     val viewModel = hiltViewModel<MoreMovieViewModel>()
-    var indexPage: Int = remember { 1 }
     HorizontalMovies(viewModel.movies, viewModel.state, moviesStateFlow = viewModel.moviesState, navController = navController)
     viewModel.state.OnBottomReached(10) {
-        viewModel.getMovies(movieType, indexPage++)
-    }
-    LaunchedEffect(key1 = true){
-        viewModel.getMovies(movieType, indexPage++)
+        viewModel.getMorePageMovies()
     }
 }
 
