@@ -67,7 +67,6 @@ fun HorizontalMovieCard(@PreviewParameter(MovieModelProvider::class) movie: Movi
     Card(
         Modifier
             .fillMaxWidth(1f)
-            .padding(10.dp, 0.dp)
             .selectable(selected = true, onClick = {
                 movie.id?.let {
                     navigator.navigate(route = Destinations.MovieDetail.createRoute(it, movieName = movie.name.orEmpty()))

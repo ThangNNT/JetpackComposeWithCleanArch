@@ -3,6 +3,7 @@ package com.nnt.viewmore
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -47,7 +48,7 @@ fun HorizontalMovies(moviesInit: ArrayList<MovieModel>, state: LazyListState, mo
             moviesInit.addAll(result.data?.movies.orEmpty())
         }
     }
-    LazyColumn(state = state) {
+    LazyColumn(state = state, modifier = Modifier.padding(16.dp, 0.dp)) {
         items(moviesInit, key = {
             it.id ?: 0
         }) { item ->
