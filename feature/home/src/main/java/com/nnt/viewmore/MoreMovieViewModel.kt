@@ -48,7 +48,7 @@ class MoreMovieViewModel @Inject constructor(private val getMovieUseCase: GetMov
         }
     }
 
-    fun getFirstPageMovies(){
+    private fun getFirstPageMovies(){
         page = START_PAGE
         getMovies()
     }

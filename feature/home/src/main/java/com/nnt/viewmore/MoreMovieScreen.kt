@@ -1,9 +1,13 @@
 package com.nnt.viewmore
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.ExperimentalUnitApi
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.nnt.core.common.HorizontalMovieCard
@@ -44,10 +48,15 @@ fun HorizontalMovies(moviesInit: ArrayList<MovieModel>, state: LazyListState, mo
         }
     }
     LazyColumn(state = state) {
-        items(moviesInit, key={
-            it.id?:0
-        }){ item ->
+        items(moviesInit, key = {
+            it.id ?: 0
+        }) { item ->
+            //first item has higher spacer
+            if (item.id == moviesInit.getOrNull(0)?.id)
+                Spacer(modifier = Modifier.height(16.dp))
+            else Spacer(modifier = Modifier.height(2.dp))
             HorizontalMovieCard(movie = item, navigator = navController)
+            Spacer(modifier = Modifier.height(2.dp))
         }
     }
 }
