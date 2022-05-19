@@ -1,5 +1,8 @@
 package com.nnt.viewmore
 
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nnt.domain.model.MovieModels
@@ -8,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
 import com.nnt.domain.base.Result
+import com.nnt.domain.model.MovieModel
 import com.nnt.domain.usecase.MovieType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow
@@ -18,6 +22,10 @@ class MoreMovieViewModel @Inject constructor(val getMovieUseCase: GetMovieUseCas
 
     private val _moviesState = MutableStateFlow<Result<MovieModels>>(Result.Empty)
     val moviesState: StateFlow<Result<MovieModels>> = _moviesState
+
+    val state = LazyListState()
+    val movies: ArrayList<MovieModel> = ArrayList()
+
 
     fun getMovies(type: MovieType?, page: Int){
         _moviesState.value = Result.Loading

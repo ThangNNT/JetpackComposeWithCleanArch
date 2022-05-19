@@ -20,20 +20,20 @@ import kotlinx.coroutines.flow.StateFlow
 @Composable
 fun MoreMovieScreen(navController: NavController, movieType: MovieType) {
     val viewModel = hiltViewModel<MoreMovieViewModel>()
-    val state = rememberLazyListState()
     var indexPage: Int = remember { 1 }
-    HorizontalMovies(state, moviesStateFlow = viewModel.moviesState, navController = navController)
-    state.OnBottomReached(10) {
+    HorizontalMovies(viewModel.movies, viewModel.state, moviesStateFlow = viewModel.moviesState, navController = navController)
+    viewModel.state.OnBottomReached(10) {
         viewModel.getMovies(movieType, indexPage++)
     }
-    viewModel.getMovies(movieType, indexPage++)
+    LaunchedEffect(key1 = true){
+        viewModel.getMovies(movieType, indexPage++)
+    }
 }
 
 @ExperimentalUnitApi
 @ExperimentalFoundationApi
 @Composable
-fun HorizontalMovies(state: LazyListState, moviesStateFlow: StateFlow<Result<MovieModels>>, navController: NavController){
-    val movies: ArrayList<MovieModel> = remember { ArrayList() }
+fun HorizontalMovies(moviesInit: ArrayList<MovieModel>, state: LazyListState, moviesStateFlow: StateFlow<Result<MovieModels>>, navController: NavController){
     when (val result = moviesStateFlow.collectAsState().value) {
         is Result.Empty -> {
 
@@ -45,11 +45,11 @@ fun HorizontalMovies(state: LazyListState, moviesStateFlow: StateFlow<Result<Mov
 
         }
         is Result.Success -> {
-            movies.addAll(result.data?.movies.orEmpty())
+            moviesInit.addAll(result.data?.movies.orEmpty())
         }
     }
     LazyColumn(state = state) {
-        items(movies, key={
+        items(moviesInit, key={
             it.id?:0
         }){ item ->
             HorizontalMovieCard(movie = item, navigator = navController)
