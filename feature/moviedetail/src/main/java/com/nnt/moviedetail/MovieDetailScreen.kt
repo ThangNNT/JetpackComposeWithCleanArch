@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
@@ -27,7 +28,9 @@ fun MovieDetailScreen(navController: NavController, movieId: Int, navigateUp: ()
         })
         MovieDetailBanner(movieDetailState = viewModel.movieDetail)
     }
-    viewModel.getMovieDetail(movieId = movieId)
+    LaunchedEffect(key1 = true){
+        viewModel.getMovieDetail(movieId = movieId)
+    }
 }
 
 @Composable
