@@ -23,7 +23,7 @@ fun MoreMovieScreen(navController: NavController, movieType: MovieType) {
     val state = rememberLazyListState()
     var indexPage: Int = remember { 1 }
     HorizontalMovies(state, moviesStateFlow = viewModel.moviesState, navController = navController)
-    state.OnBottomReached(2) {
+    state.OnBottomReached(10) {
         viewModel.getMovies(movieType, indexPage++)
     }
     viewModel.getMovies(movieType, indexPage++)
@@ -46,11 +46,13 @@ fun HorizontalMovies(state: LazyListState, moviesStateFlow: StateFlow<Result<Mov
         }
         is Result.Success -> {
             movies.addAll(result.data?.movies.orEmpty())
-            LazyVerticalGrid(cells = GridCells.Fixed(1), state = state) {
-                items(movies) { item ->
-                    HorizontalMovieCard(movie = item, navigator = navController)
-                }
-            }
+        }
+    }
+    LazyColumn(state = state) {
+        items(movies, key={
+            it.id?:0
+        }){ item ->
+            HorizontalMovieCard(movie = item, navigator = navController)
         }
     }
 }
