@@ -51,9 +51,7 @@ fun JetApp(){
                 val movieId = it.arguments?.getInt(MovieDetailArgs.MovieId.value)
                 val movieName = it.arguments?.getString(MovieDetailArgs.MovieName.value)
                 requireNotNull(movieId)
-                MovieDetailScreen(navController, movieId, movieName = movieName.orEmpty()) {
-                    navController.popBackStack()
-                }
+                MovieDetailScreen(navController, movieName = movieName.orEmpty())
             }
             composable(route = Destinations.MoreMovie.route, arguments = listOf(navArgument(MoreMovieArgs.Type.value){
                 type = NavType.StringType

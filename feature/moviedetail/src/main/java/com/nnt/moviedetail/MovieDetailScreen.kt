@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
@@ -19,16 +18,13 @@ import com.nnt.utils.buildImageUrl
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
-fun MovieDetailScreen(navController: NavController, movieId: Int, movieName: String, navigateUp: ()-> Unit){
+fun MovieDetailScreen(navController: NavController, movieName: String){
     val viewModel = hiltViewModel<MovieDetailViewModel>()
     Column {
         Toolbar(title = movieName, navigateUp = {
             navController.popBackStack()
         })
         MovieDetailBanner(movieDetailState = viewModel.movieDetail)
-    }
-    LaunchedEffect(key1 = true){
-        viewModel.getMovieDetail(movieId = movieId)
     }
 }
 
