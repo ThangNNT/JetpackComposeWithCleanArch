@@ -24,6 +24,7 @@ import com.nnt.core.R
 import com.nnt.domain.model.MovieModel
 import com.nnt.navigator.Destinations
 import com.nnt.utils.buildImageUrl
+import com.nnt.utils.singleClickable
 
 @ExperimentalUnitApi
 @Composable
@@ -31,11 +32,11 @@ fun MovieCard(movie: MovieModel, navigator: NavController){
     Card(
         Modifier
             .padding(10.dp, 0.dp)
-            .selectable(selected = true, onClick = {
+            .singleClickable {
                 movie.id?.let {
                     navigator.navigate(route = Destinations.MovieDetail.createRoute(it, movie.name.orEmpty()))
                 }
-            }), elevation = 2.dp, shape = RoundedCornerShape(6.dp)
+            }, elevation = 2.dp, shape = RoundedCornerShape(6.dp)
     ) {
         Column(modifier = Modifier
             .width(MovieCardConfig.CARD_WIDTH)) {
@@ -67,11 +68,9 @@ fun HorizontalMovieCard(@PreviewParameter(MovieModelProvider::class) movie: Movi
     Card(
         Modifier
             .fillMaxWidth(1f)
-            .selectable(selected = true, onClick = {
-                movie.id?.let {
-                    navigator.navigate(route = Destinations.MovieDetail.createRoute(it, movieName = movie.name.orEmpty()))
-                }
-            }), elevation = 2.dp, shape = RoundedCornerShape(6.dp)
+            .singleClickable { movie.id?.let {
+                navigator.navigate(route = Destinations.MovieDetail.createRoute(it, movieName = movie.name.orEmpty()))
+            } } , elevation = 2.dp, shape = RoundedCornerShape(6.dp)
     ) {
         Row(modifier = Modifier.padding(0.dp, 0.dp, 16.dp, 0.dp)) {
             Image(
