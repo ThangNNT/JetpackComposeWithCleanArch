@@ -40,8 +40,8 @@ fun MovieCard(movie: MovieModel, navigator: NavController){
         Column(modifier = Modifier
             .width(120.dp)) {
             Image(modifier = Modifier
-                .height(160.dp)
-                .width(120.dp),
+                .height(MovieCardConfig.CARD_HEIGHT)
+                .width(MovieCardConfig.CARD_WIDTH),
                 painter = rememberImagePainter(buildImageUrl(movie.posterPath), builder = {
                     error(R.drawable.no_poster_available)
                 }),
@@ -98,4 +98,9 @@ fun HorizontalMovieCard(@PreviewParameter(MovieModelProvider::class) movie: Movi
 
 class MovieModelProvider : PreviewParameterProvider<MovieModel>{
     override val values: Sequence<MovieModel> = sequenceOf(MovieModel(1,"Kỷ băng hà 2","abc", "/odJ4hx6g6vBt4lBWKFD1tI8WS4x.jpg", 5.0, 0.1, 100))
+}
+
+object MovieCardConfig{
+    val CARD_WIDTH = 120.dp
+    val CARD_HEIGHT = 160.dp
 }

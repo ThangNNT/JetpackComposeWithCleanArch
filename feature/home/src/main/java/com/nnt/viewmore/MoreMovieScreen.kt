@@ -13,6 +13,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.nnt.core.common.HorizontalMovieCard
+import com.nnt.core.common.MovieShimmerCardType
+import com.nnt.core.common.ShimmerMovieCardLoadingAnimation
 import com.nnt.core.common.Toolbar
 import com.nnt.domain.base.Result
 import com.nnt.domain.model.MovieModel
@@ -47,10 +49,12 @@ fun HorizontalMovies(moviesInit: ArrayList<MovieModel>, state: LazyListState, mo
 
         }
         is Result.Loading -> {
-
+            repeat(5){
+                ShimmerMovieCardLoadingAnimation(movieShimmerCardType = MovieShimmerCardType.Horizontal)
+            }
         }
         is Result.Error -> {
-
+            
         }
         is Result.Success -> {
             moviesInit.addAll(result.data?.movies.orEmpty())
