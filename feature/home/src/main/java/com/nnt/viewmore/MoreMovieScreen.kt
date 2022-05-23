@@ -49,8 +49,10 @@ fun HorizontalMovies(moviesInit: ArrayList<MovieModel>, state: LazyListState, mo
 
         }
         is Result.Loading -> {
-            repeat(5){
-                ShimmerMovieCardLoadingAnimation(movieShimmerCardType = MovieShimmerCardType.Horizontal)
+            if(moviesInit.isEmpty()){
+                repeat(5){
+                    ShimmerMovieCardLoadingAnimation(movieShimmerCardType = MovieShimmerCardType.Horizontal)
+                }
             }
         }
         is Result.Error -> {
