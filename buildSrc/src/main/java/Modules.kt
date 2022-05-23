@@ -9,4 +9,5 @@ object Modules {
     //featrue module
     const val HOME=":feature:home"
     const val MOVIE_DETAIL = ":feature:moviedetail"
+    const val SEARCH = ":feature:search"
 }
