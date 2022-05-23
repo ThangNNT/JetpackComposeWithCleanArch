@@ -16,40 +16,40 @@ import com.nnt.jetpackcomposewithcleanarch.ui.theme.ShimmerColorShades
  */
 @Composable
 fun MovieShimmerItem(
-    brush: Brush
+    brush: Brush, modifier: Modifier = Modifier
+        .padding(10.dp, 0.dp)
+        .width(MovieCardConfig.CARD_WIDTH)
+        .height(MovieCardConfig.CARD_HEIGHT)
 ) {
     // Column composable containing spacer shaped like a rectangle,
     // set the [background]'s [brush] with the brush receiving from [ShimmerAnimation]
     // Composable which is the Animation you are gonna create.
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column {
         Spacer(
-            modifier = Modifier
-                .width(MovieCardConfig.CARD_WIDTH)
-                .height(MovieCardConfig.CARD_HEIGHT)
-                .background(brush = brush)
+            modifier = modifier.background(brush)
         )
     }
 }
 
 @Composable
 fun HorizontalMovieShimmerItem(
-    brush: Brush
+    brush: Brush, modifier: Modifier = Modifier
+        .padding(16.dp)
+        .fillMaxWidth()
+        .height(MovieCardConfig.CARD_HEIGHT)
 ) {
     // Column composable containing spacer shaped like a rectangle,
     // set the [background]'s [brush] with the brush receiving from [ShimmerAnimation]
     // Composable which is the Animation you are gonna create.
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column {
         Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(MovieCardConfig.CARD_HEIGHT)
-                .background(brush = brush)
+            modifier = modifier.background(brush)
         )
     }
 }
 
 @Composable
-fun ShimmerMovieCardLoadingAnimation(movieShimmerCardType: MovieShimmerCardType) {
+fun ShimmerMovieCardLoadingAnimation(movieShimmerCardType: MovieShimmerCardType, modifier: Modifier? = null) {
 
     /*
      Create InfiniteTransition
@@ -67,8 +67,6 @@ fun ShimmerMovieCardLoadingAnimation(movieShimmerCardType: MovieShimmerCardType)
         initialValue = 0f,
         targetValue = 1000f,
         animationSpec = infiniteRepeatable(
-
-
             // Tween Animates between values over specified [durationMillis]
             tween(durationMillis = 1200, easing = FastOutSlowInEasing),
             RepeatMode.Reverse
@@ -87,8 +85,21 @@ fun ShimmerMovieCardLoadingAnimation(movieShimmerCardType: MovieShimmerCardType)
         end = Offset(translateAnim, translateAnim)
     )
     if(movieShimmerCardType == MovieShimmerCardType.Horizontal)
-        HorizontalMovieShimmerItem(brush = brush)
-    else MovieShimmerItem(brush = brush)
+        if(modifier == null){
+            HorizontalMovieShimmerItem(brush = brush)
+
+        }
+        else {
+            HorizontalMovieShimmerItem(brush = brush, modifier = modifier)
+        }
+    else {
+        if(modifier == null){
+            MovieShimmerItem(brush = brush)
+        }
+        else {
+            MovieShimmerItem(brush = brush, modifier = modifier)
+        }
+    }
 }
 
 enum class MovieShimmerCardType {
