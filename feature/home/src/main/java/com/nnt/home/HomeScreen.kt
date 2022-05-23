@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -20,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.nnt.core.common.MovieCard
+import com.nnt.core.common.MovieShimmerCardType
+import com.nnt.core.common.ShimmerMovieCardLoadingAnimation
 import com.nnt.domain.base.Result
 import com.nnt.domain.model.MovieModels
 import com.nnt.domain.usecase.MovieType
@@ -34,13 +37,13 @@ fun HomeScreen(navController: NavController){
     Surface(color = MaterialTheme.colors.background) {
         LazyColumn() {
             item {
-                Header(text = "Popular", movieType = MovieType.POPULAR, navController)
+                Header(text = stringResource(id = R.string.popular), movieType = MovieType.POPULAR, navController)
                 MovieLists(viewModel.popularMovies, navigator = navController)
-                Header(text = "Top Rated", movieType = MovieType.TOP_RATED, navController)
+                Header(text = stringResource(id = R.string.top_rated), movieType = MovieType.TOP_RATED, navController)
                 MovieLists(viewModel.topRatedMovies, navigator = navController)
-                Header(text = "Upcoming", movieType = MovieType.UPCOMING, navController)
+                Header(text = stringResource(id = R.string.upcoming), movieType = MovieType.UPCOMING, navController)
                 MovieLists(viewModel.upcomingMovies, navigator = navController)
-                Header(text = "Now Playing", movieType = MovieType.NOW_PLAYING, navController)
+                Header(text = stringResource(id = R.string.now_playing), movieType = MovieType.NOW_PLAYING, navController)
                 MovieLists(viewModel.nowPlayingMovies, navigator = navController)
                 Text("",Modifier.padding(0.dp, 0.dp, 0.dp, 20.dp))
             }
@@ -53,7 +56,12 @@ fun HomeScreen(navController: NavController){
 fun MovieLists(moviesState: StateFlow<Result<MovieModels>>, navigator: NavController){
     when(val state = moviesState.collectAsState().value){
         is Result.Loading -> {
-            CircularProgressIndicator(Modifier.padding(20.dp, 20.dp))
+            //CircularProgressIndicator(Modifier.padding(20.dp, 20.dp))
+            Row {
+                repeat(5){
+                    ShimmerMovieCardLoadingAnimation(MovieShimmerCardType.Normal)
+                }
+            }
         }
         is Result.Success -> {
             state.data?.movies?.let { movies ->
