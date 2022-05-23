@@ -6,7 +6,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
@@ -14,12 +13,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.nnt.core.R
-import com.nnt.domain.usecase.MovieType
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.PrimaryColor
 
 sealed class BottomNavItem(var title: String, var icon: Int, var screen_route: String){
     object Home : BottomNavItem("Home", R.drawable.ic_home_white, Destinations.Home.route)
-    object Favourite: BottomNavItem("Popular", R.drawable.ic_star, Destinations.MoreMovie.createRoute(MovieType.POPULAR))
+    object Favourite: BottomNavItem("Search", R.drawable.ic_baseline_search_24, Destinations.Search.route)
 }
 
 @Composable

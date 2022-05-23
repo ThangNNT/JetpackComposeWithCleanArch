@@ -82,6 +82,7 @@ dependencies {
     implementation project(Modules.REPOSITORY)
     implementation project(Modules.HOME)
     implementation project(Modules.MOVIE_DETAIL)
+    implementation(project(Modules.SEARCH))
 
     implementation Deps.ARROW_CORE
 

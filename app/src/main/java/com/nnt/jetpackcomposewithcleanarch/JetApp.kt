@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.search.SearchScreen
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.nnt.home.HomeScreen
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.JetpackComposeWithCleanArchTheme
@@ -60,6 +61,9 @@ fun NavigationGraph(navController: NavHostController){
     NavHost(navController = navController, startDestination = Destinations.Home.route){
         composable(route = Destinations.Home.route){
             HomeScreen(navController)
+        }
+        composable(route = Destinations.Search.route){
+            SearchScreen()
         }
         composable(route = Destinations.MovieDetail.route, arguments = listOf(navArgument(MovieDetailArgs.MovieId.value){
             type = NavType.IntType
