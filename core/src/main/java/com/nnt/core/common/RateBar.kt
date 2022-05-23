@@ -28,9 +28,16 @@ fun RateBar(ratePercent: Float, modifier: Modifier = Modifier) {
             rateImageIds.add(emptyStarId)
         }
     }
-    Row(modifier = modifier) {
-        rateImageIds.forEachIndexed { index, _ ->
-            Image(painter = painterResource(id = rateImageIds[index]), contentDescription = "star")
+    if(rateImageIds.isEmpty()){
+        Row(modifier = modifier) {
+            Image(painter = painterResource(id = emptyStarId), contentDescription = "star")
+        }
+    }
+    else {
+        Row(modifier = modifier) {
+            rateImageIds.forEachIndexed { index, _ ->
+                Image(painter = painterResource(id = rateImageIds[index]), contentDescription = "star")
+            }
         }
     }
 }
