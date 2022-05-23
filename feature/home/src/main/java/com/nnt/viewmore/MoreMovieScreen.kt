@@ -19,6 +19,7 @@ import com.nnt.domain.model.MovieModel
 import com.nnt.domain.model.MovieModels
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectIndexed
 
 @ExperimentalUnitApi
 @InternalCoroutinesApi
@@ -70,6 +71,7 @@ fun HorizontalMovies(moviesInit: ArrayList<MovieModel>, state: LazyListState, mo
 }
 
 
+@OptIn(InternalCoroutinesApi::class)
 @Composable
 fun LazyListState.OnBottomReached(
     // tells how many items before we reach the bottom of the list
@@ -94,6 +96,8 @@ fun LazyListState.OnBottomReached(
 
     LaunchedEffect(shouldLoadMore){
         snapshotFlow { shouldLoadMore.value }
-            .collect { if (it) onLoadMore() }
+            .collectIndexed { _, value ->
+                if (value) onLoadMore()
+            }
     }
 }
