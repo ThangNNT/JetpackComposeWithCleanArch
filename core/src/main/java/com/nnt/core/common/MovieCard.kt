@@ -38,10 +38,10 @@ fun MovieCard(movie: MovieModel, navigator: NavController){
             }), elevation = 2.dp, shape = RoundedCornerShape(6.dp)
     ) {
         Column(modifier = Modifier
-            .width(120.dp)) {
+            .width(MovieCardConfig.CARD_WIDTH)) {
             Image(modifier = Modifier
                 .height(MovieCardConfig.CARD_HEIGHT)
-                .width(MovieCardConfig.CARD_WIDTH),
+                .fillMaxWidth(),
                 painter = rememberImagePainter(buildImageUrl(movie.posterPath), builder = {
                     error(R.drawable.no_poster_available)
                 }),
@@ -76,7 +76,7 @@ fun HorizontalMovieCard(@PreviewParameter(MovieModelProvider::class) movie: Movi
         Row(modifier = Modifier.padding(0.dp, 0.dp, 16.dp, 0.dp)) {
             Image(
                 modifier = Modifier
-                    .height(160.dp)
+                    .height(MovieCardConfig.CARD_HEIGHT)
                     .width(120.dp),
                 painter = rememberImagePainter(buildImageUrl(movie.posterPath), builder = {
                     error(R.drawable.no_poster_available)
@@ -101,6 +101,13 @@ class MovieModelProvider : PreviewParameterProvider<MovieModel>{
 }
 
 object MovieCardConfig{
+    /**
+     * use for normal card
+     */
     val CARD_WIDTH = 120.dp
+
+    /**
+     * use for horizontal card
+     */
     val CARD_HEIGHT = 160.dp
 }

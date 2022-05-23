@@ -19,7 +19,7 @@ fun MovieShimmerItem(
     brush: Brush, modifier: Modifier = Modifier
         .padding(10.dp, 0.dp)
         .width(MovieCardConfig.CARD_WIDTH)
-        .height(MovieCardConfig.CARD_HEIGHT)
+        .height(200.dp)
 ) {
     // Column composable containing spacer shaped like a rectangle,
     // set the [background]'s [brush] with the brush receiving from [ShimmerAnimation]
