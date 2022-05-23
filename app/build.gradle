@@ -104,8 +104,8 @@ dependencies {
     //Gson
     implementation Deps.GSON
 
-    //Google accompanist
-    implementation Deps.GOOGLE_ACCOMPANIST
+    //SwipeRefresh
+    implementation Deps.SWIPE_REFRESH
 
 
 }

@@ -97,7 +97,7 @@ dependencies {
 
     implementation Deps.HILT_NAVIGATION_COMPOSE
 
-    //Google accompanist
-    implementation Deps.GOOGLE_ACCOMPANIST
+    //SwipeRefresh
+    implementation Deps.SWIPE_REFRESH
 
 }

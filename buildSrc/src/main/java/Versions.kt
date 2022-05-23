@@ -43,8 +43,8 @@ object Versions {
     /**----------------- GSON -----------------------------------------------*/
     const val GSON = "2.9.0"
 
-    /**----------------- GOOGLE ACCOMPANIST -----------------------------------------------*/
-    const val GOOGLE_ACCOMPANIST = "0.24.9-beta"
+    /**----------------- SWIPE REFRESH -----------------------------------------------*/
+    const val SWIPE_REFRESH = "0.24.9-beta"
 }
 
 object TestVersion {
