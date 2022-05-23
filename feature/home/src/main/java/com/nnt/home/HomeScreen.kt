@@ -1,6 +1,5 @@
 package com.nnt.home
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -30,6 +29,7 @@ import com.nnt.domain.model.MovieModels
 import com.nnt.domain.usecase.MovieType
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.Purple200
 import com.nnt.navigator.Destinations
+import com.nnt.utils.singleClickable
 import kotlinx.coroutines.flow.StateFlow
 
 @ExperimentalUnitApi
@@ -40,7 +40,7 @@ fun HomeScreen(navController: NavController){
         SwipeRefresh(state = rememberSwipeRefreshState(isRefreshing = false), onRefresh = {
             viewModel.refresh()
         }){
-            LazyColumn() {
+            LazyColumn {
                 item {
                     Header(text = stringResource(id = R.string.popular), movieType = MovieType.POPULAR, navController)
                     MovieLists(viewModel.popularMovies, navigator = navController)
@@ -107,7 +107,7 @@ fun Header(text: String, movieType: MovieType, navController: NavController) {
         Text("More",
             Modifier
                 .padding(16.dp, vertical = 16.dp)
-                .clickable {
+                .singleClickable {
                     navController.navigate(Destinations.MoreMovie.createRoute(movieType = movieType))
                 }
                 .weight(2f), style = textMoreStyle, textAlign = TextAlign.End

@@ -9,13 +9,20 @@ import androidx.compose.ui.composed
 
 @SuppressLint("UnnecessaryComposedModifier")
 inline fun Modifier.singleClickable(crossinline onClick: ()-> Unit): Modifier = composed {
-    var clickTime = remember {
-        mutableStateOf(0L)
+    val previousClickTime = remember {
+        mutableStateOf(System.currentTimeMillis())
+    }
+    val isClicking = remember {
+        mutableStateOf(false)
     }
     clickable {
+        isClicking.value = true
         val currentTime = System.currentTimeMillis()
-        if ((currentTime - clickTime.value) < 1000L) return@clickable
-        clickTime = mutableStateOf(currentTime)
+        if ((currentTime - previousClickTime.value) < 1000L || !isClicking.value) {
+            return@clickable
+        }
+        isClicking.value = false
+        previousClickTime.value = currentTime
         onClick()
     }
 }
