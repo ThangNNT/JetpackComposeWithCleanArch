@@ -104,7 +104,8 @@ fun Header(text: String, movieType: MovieType, navController: NavController) {
             Modifier
                 .padding(16.dp, vertical = 16.dp)
                 .weight(8f), style = textStyle)
-        Text("More",
+        Text(
+            stringResource(id = R.string.view_more),
             Modifier
                 .padding(16.dp, vertical = 16.dp)
                 .singleClickable {
