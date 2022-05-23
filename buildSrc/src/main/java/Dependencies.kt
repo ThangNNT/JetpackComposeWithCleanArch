@@ -17,42 +17,39 @@ object Deps {
     const val NAVIGATION_COMPOSE = "androidx.navigation:navigation-compose:${Versions.NAVIGATION_COMPOSE}"
 
 
-    /**------------------ KTOR -----------------------*/
+    /**------------------------------ KTOR ------------------------------*/
     const val KTOR_CLIENT_ANDROID = "io.ktor:ktor-client-android:${Versions.KTOR_CLIENT_ANDROID}"
     const val KTOR_CLIENT_SERIALIZATION = "io.ktor:ktor-client-serialization:${Versions.KTOR_CLIENT_SERIALIZATION}"
     const val KOTLINX_SERIALIAZATION_JSON = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KOTLINX_SERIALIZATION_JSON}"
     const val KTOR_CLIENT_LOGGING = "io.ktor:ktor-client-logging-jvm:${Versions.KTOR_CLIENT_LOGGING}"
     const val KTOR_CLIENT_CORE_JVM ="io.ktor:ktor-client-core-jvm:${Versions.KTOR_CLIENT_CORE_JVM}"
 
-    /**-------------------EITHER----------------------*/
+    /**----------------------------- EITHER -----------------------------*/
     const val ARROW_CORE = "io.arrow-kt:arrow-core:${Versions.ARROW_CORE}"
 
-    /**------------------- HILT -----------------------*/
+    /**----------------------------- HILT -------------------------------*/
     const val HILT_ANDROID =  "com.google.dagger:hilt-android:${Versions.HILT_VERSION}"
     const val HILT_COMPILER = "com.google.dagger:hilt-compiler:${Versions.HILT_VERSION}"
     const val HILT_NAVIGATION_COMPOSE = "androidx.hilt:hilt-navigation-compose:${Versions.HILT_NAVIGATION_COMPOSE}"
 
-    /**------------------- COROUTINES -----------------*/
+    /**------------------------- COROUTINES -----------------------------*/
     const val KOTLIN_COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.KOTLIN_COROUTINES}"
 
-    /**------------------- GLIDE --------------------------*/
+    /**--------------------------- GLIDE --------------------------------*/
     const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
     const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:${Versions.GLIDE}"
 
-    /**------------------ COIL ----------------------------*/
+    /**--------------------------- COIL ---------------------------------*/
     const val COIL ="io.coil-kt:coil-compose:${Versions.COIL}"
 
-    /**----------------- SYSTEM_UI_CONTROLLER -------------------------------*/
+    /**------------------- SYSTEM_UI_CONTROLLER -------------------------*/
     const val SYSTEM_UI_CONTROLLER = "com.google.accompanist:accompanist-systemuicontroller:${Versions.SYSTEM_UI_CONTROLLER}"
 
-    /**----------------- GSON -----------------------------------------------*/
+    /**------------------------- GSON -----------------------------------*/
     const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
 
-    /**----------------- SWIPE REFRESH -----------------------------------------------*/
+    /**-------------------- SWIPE REFRESH -------------------------------*/
     const val SWIPE_REFRESH = "com.google.accompanist:accompanist-swiperefresh:${Versions.SWIPE_REFRESH}"
-
-
-
 }
 
 
