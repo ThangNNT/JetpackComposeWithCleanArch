@@ -77,7 +77,6 @@ fun HorizontalMovies(moviesInit: ArrayList<MovieModel>, state: LazyListState, mo
 }
 
 
-@OptIn(InternalCoroutinesApi::class)
 @Composable
 fun LazyListState.OnBottomReached(
     // tells how many items before we reach the bottom of the list
