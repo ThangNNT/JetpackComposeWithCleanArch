@@ -48,6 +48,10 @@ object Deps {
     /**----------------- GSON -----------------------------------------------*/
     const val GSON = "com.google.code.gson:gson:${Versions.GSON}"
 
+    /**----------------- GOOGLE ACCOMPANIST -----------------------------------------------*/
+    const val GOOGLE_ACCOMPANIST = "com.google.accompanist:accompanist-swiperefresh:${Versions.GOOGLE_ACCOMPANIST}"
+
+
 
 }
 

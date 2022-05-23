@@ -31,11 +31,19 @@ class MainViewModel @Inject constructor(private val movieUseCase: GetMovieUseCas
     val latestMovies: StateFlow<Result<MovieModels>> = _latestMovies
 
     init {
+        getMovies()
+    }
+
+    private fun getMovies(){
         getPopularMovies()
         getUpcomingMovies()
         getTopRatedMovies()
         getLatestMovies()
         getNowPlayingMovies()
+    }
+
+    fun refresh(){
+        getMovies()
     }
 
     private fun getPopularMovies(){

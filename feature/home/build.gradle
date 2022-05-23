@@ -72,17 +72,10 @@ dependencies {
     implementation Deps.ANDROIDX_LIFECYCLE_RUNTIME_KTX
     implementation Deps.ANDROIDX_LIFECYCLE_VIEWMODEL_COMPOSE
     implementation Deps.ANDROIDX_ACTIVITY_COMPOSE
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
-    implementation 'androidx.activity:activity-compose:1.4.0'
     testImplementation TestDeps.JUNIT
     androidTestImplementation TestDeps.JUNIT_ANDROIDX_TEST_EXT
     androidTestImplementation TestDeps.ANDROIDX_TEST_ESPRESSO_CORE
     androidTestImplementation TestDeps.ANDROIDX_COMPOSE_UI_TEST_JUNIT
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation TestDeps.ANDROID_COMPOSE_UI_TOOLING
 
     //modules
@@ -91,7 +84,6 @@ dependencies {
 
     //Hilt
     implementation Deps.HILT_ANDROID
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     kapt Deps.HILT_COMPILER
 
 
@@ -104,5 +96,8 @@ dependencies {
     implementation Deps.NAVIGATION_COMPOSE
 
     implementation Deps.HILT_NAVIGATION_COMPOSE
+
+    //Google accompanist
+    implementation Deps.GOOGLE_ACCOMPANIST
 
 }

@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.nnt.core.common.MovieCard
 import com.nnt.core.common.MovieShimmerCardType
 import com.nnt.core.common.ShimmerMovieCardLoadingAnimation
@@ -35,17 +37,21 @@ import kotlinx.coroutines.flow.StateFlow
 fun HomeScreen(navController: NavController){
     val viewModel = hiltViewModel<MainViewModel>()
     Surface(color = MaterialTheme.colors.background) {
-        LazyColumn() {
-            item {
-                Header(text = stringResource(id = R.string.popular), movieType = MovieType.POPULAR, navController)
-                MovieLists(viewModel.popularMovies, navigator = navController)
-                Header(text = stringResource(id = R.string.top_rated), movieType = MovieType.TOP_RATED, navController)
-                MovieLists(viewModel.topRatedMovies, navigator = navController)
-                Header(text = stringResource(id = R.string.upcoming), movieType = MovieType.UPCOMING, navController)
-                MovieLists(viewModel.upcomingMovies, navigator = navController)
-                Header(text = stringResource(id = R.string.now_playing), movieType = MovieType.NOW_PLAYING, navController)
-                MovieLists(viewModel.nowPlayingMovies, navigator = navController)
-                Text("",Modifier.padding(0.dp, 0.dp, 0.dp, 20.dp))
+        SwipeRefresh(state = rememberSwipeRefreshState(isRefreshing = false), onRefresh = {
+            viewModel.refresh()
+        }){
+            LazyColumn() {
+                item {
+                    Header(text = stringResource(id = R.string.popular), movieType = MovieType.POPULAR, navController)
+                    MovieLists(viewModel.popularMovies, navigator = navController)
+                    Header(text = stringResource(id = R.string.top_rated), movieType = MovieType.TOP_RATED, navController)
+                    MovieLists(viewModel.topRatedMovies, navigator = navController)
+                    Header(text = stringResource(id = R.string.upcoming), movieType = MovieType.UPCOMING, navController)
+                    MovieLists(viewModel.upcomingMovies, navigator = navController)
+                    Header(text = stringResource(id = R.string.now_playing), movieType = MovieType.NOW_PLAYING, navController)
+                    MovieLists(viewModel.nowPlayingMovies, navigator = navController)
+                    Text("",Modifier.padding(0.dp, 0.dp, 0.dp, 20.dp))
+                }
             }
         }
     }
