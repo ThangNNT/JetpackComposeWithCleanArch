@@ -41,7 +41,7 @@ fun BottomNavigation(navController: NavController) {
                 label = { Text(text = title,
                     fontSize = 9.sp) },
                 selectedContentColor = White,
-                unselectedContentColor = Gray.copy(0.4f),
+                unselectedContentColor = White.copy(0.4f),
                 alwaysShowLabel = true,
                 selected = currentRoute == item.screen_route,
                 onClick = {
