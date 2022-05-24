@@ -26,7 +26,7 @@ class MovieDetailViewModel @Inject constructor(private val movieDetailUseCase: G
             getMovieDetail(it)
         }
     }
-    fun getMovieDetail(movieId: Int){
+    private fun getMovieDetail(movieId: Int){
         detailJob?.cancel()
         _movieDetail.value = Result.Loading
         detailJob = viewModelScope.launch(Dispatchers.IO) {

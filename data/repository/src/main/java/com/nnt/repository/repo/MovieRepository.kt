@@ -23,4 +23,16 @@ class MovieRepositoryImpl constructor(private val movieRemoteDataSource: RemoteM
     override suspend fun getMovieDetail(movieId: Int): Result<MovieDetailModel> {
         return mapperFacade.movieDetailMapper.map(movieRemoteDataSource.getMovieDetail(movieId))
     }
+
+    override suspend fun searchMovies(
+        keyword: String?,
+        language: String?,
+        page: Int?,
+        includeAdult: Boolean?,
+        region: String?,
+        year: Int?,
+        primaryReleaseYear: Int?
+    ): Result<MovieModels> {
+        return mapperFacade.movieResultMapper.map(movieRemoteDataSource.searchMovies(keyword, language, page, includeAdult, region, year, primaryReleaseYear))
+    }
 }

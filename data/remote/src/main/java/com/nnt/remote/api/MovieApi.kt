@@ -13,7 +13,19 @@ class MovieApi(private val client: HttpClient) {
         }
     }
 
-    suspend fun  getMovieDetail(movieId: Int): MovieDetailResponse {
+    suspend fun getMovieDetail(movieId: Int): MovieDetailResponse {
         return client.get(path = "movie/$movieId")
+    }
+
+    suspend fun searchMovies(keyword: String?, language: String?, page: Int?, include_adult: Boolean?, region: String?, year: Int?, primary_release_year: Int?): MovieResponse {
+        return client.get(path ="search/movie"){
+            parameter("query", keyword)
+            parameter("language", language)
+            parameter("page", page)
+            parameter("include_adult", include_adult)
+            parameter("region", region)
+            parameter("year", year)
+            parameter("primary_release_year", primary_release_year)
+        }
     }
 }

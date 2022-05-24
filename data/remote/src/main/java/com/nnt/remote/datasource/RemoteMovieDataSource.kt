@@ -11,6 +11,7 @@ import javax.inject.Inject
 interface RemoteMovieDataSource {
     suspend fun getMovies(type: MovieType, page: Int? = null): Either<ErrorResponse, MovieResponse>
     suspend fun getMovieDetail(movieId: Int): Either<ErrorResponse, MovieDetailResponse>
+    suspend fun searchMovies(keyword: String?, language: String?, page: Int?, include_adult: Boolean?, region: String?, year: Int?, primary_release_year: Int?): Either<ErrorResponse, MovieResponse>
 }
 
 class RemoteMovieDataSourceImpl(private val movieApi: MovieApi) : BaseRemoteDataSource(),
@@ -25,6 +26,28 @@ class RemoteMovieDataSourceImpl(private val movieApi: MovieApi) : BaseRemoteData
         getResult {
             movieApi.getMovieDetail(movieId)
         }
+
+    override suspend fun searchMovies(
+        keyword: String?,
+        language: String?,
+        page: Int?,
+        include_adult: Boolean?,
+        region: String?,
+        year: Int?,
+        primary_release_year: Int?
+    ): Either<ErrorResponse, MovieResponse> =
+        getResult {
+            movieApi.searchMovies(
+                keyword,
+                language,
+                page,
+                include_adult,
+                region,
+                year,
+                primary_release_year
+            )
+        }
+
 }
 
 enum class MovieType(val value: String){
