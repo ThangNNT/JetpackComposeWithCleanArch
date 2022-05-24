@@ -7,12 +7,12 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.nnt.core.R
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.PrimaryColor
@@ -22,19 +22,20 @@ sealed class BottomNavItem(@StringRes var title: Int, var icon: Int, var screen_
     object Favourite: BottomNavItem(R.string.search, R.drawable.ic_baseline_search_24, Destinations.Search.route)
 }
 
+val bottomNavItem = listOf(
+    BottomNavItem.Home,
+    BottomNavItem.Favourite
+)
+
 @Composable
 fun BottomNavigation(navController: NavController) {
-    val items = listOf(
-        BottomNavItem.Home,
-        BottomNavItem.Favourite,
-    )
     BottomNavigation(
         backgroundColor = PrimaryColor,
         contentColor = White
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
-        items.forEach { item ->
+        bottomNavItem.forEach { item ->
             val title = stringResource(id = item.title)
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = item.icon), contentDescription = title) },
@@ -58,4 +59,16 @@ fun BottomNavigation(navController: NavController) {
             )
         }
     }
+}
+
+@Composable
+fun shouldShowBottomBar(navController: NavHostController): Boolean {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+    bottomNavItem.forEach {
+        if(currentRoute == it.screen_route){
+            return true
+        }
+    }
+    return false
 }

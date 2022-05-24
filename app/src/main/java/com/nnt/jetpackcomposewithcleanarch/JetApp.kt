@@ -3,10 +3,13 @@ package com.nnt.jetpackcomposewithcleanarch
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.ExperimentalUnitApi
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -19,10 +22,7 @@ import com.nnt.home.HomeScreen
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.JetpackComposeWithCleanArchTheme
 import com.nnt.jetpackcomposewithcleanarch.ui.theme.PrimaryColor
 import com.nnt.moviedetail.MovieDetailScreen
-import com.nnt.navigator.BottomNavigation
-import com.nnt.navigator.Destinations
-import com.nnt.navigator.MoreMovieArgs
-import com.nnt.navigator.MovieDetailArgs
+import com.nnt.navigator.*
 import com.nnt.viewmore.MoreMovieScreen
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -46,11 +46,18 @@ fun JetApp(){
         }
         //setup navigation
         val navController = rememberNavController()
-
+        val scaffoldState = rememberScaffoldState()
         Scaffold(
-            bottomBar = { BottomNavigation(navController = navController) }
-        ){
-            NavigationGraph(navController = navController)
+            scaffoldState = scaffoldState,
+            bottomBar = {
+                if (shouldShowBottomBar(navController = navController)) {
+                    BottomNavigation(navController = navController)
+                }
+            }
+        ) {
+            Box(modifier = Modifier.padding(it)) {
+                NavigationGraph(navController = navController)
+            }
         }
     }
 }
