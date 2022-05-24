@@ -70,7 +70,7 @@ fun NavigationGraph(navController: NavHostController){
             HomeScreen(navController)
         }
         composable(route = Destinations.Search.route){
-            SearchScreen()
+            SearchScreen(navController = navController)
         }
         composable(route = Destinations.MovieDetail.route, arguments = listOf(navArgument(MovieDetailArgs.MovieId.value){
             type = NavType.IntType
